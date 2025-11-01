@@ -787,6 +787,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .carousel-slide {
+    position: relative;
+    overflow: hidden;
+}
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ensure the carousel has explicit height (example) */
+.hero .carousel { height: 60vh; min-height: 360px; }
+
+.carousel-slide {
     position: absolute;
     top: 0;
     left: 0;
