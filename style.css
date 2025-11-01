@@ -403,15 +403,6 @@ body {
     overflow: hidden;
 }
 
-/* Give the carousel a stable height (adjust as you like for phones) */
-.hero .carousel {
-    position: relative;
-    height: 56vh;         /* good starting point for phones/desktops */
-    min-height: 300px;    /* prevent collapsing on very small viewports */
-    max-height: 75vh;
-    overflow: hidden;
-}
-
 *,
 *::before,
 *::after {
@@ -1439,7 +1430,7 @@ section {
     }
     
     section {
-        padding: 60px 0;
+        padding: 0px 0;
     }
     
     .section-title {
@@ -1529,9 +1520,9 @@ html, body {
 /* Give the carousel a stable height (adjust as you like for phones) */
 .hero .carousel {
     position: relative;
-    height: 56vh;         /* good starting point for phones/desktops */
+    height: 100vh;         /* good starting point for phones/desktops */
     min-height: 300px;    /* prevent collapsing on very small viewports */
-    max-height: 75vh;
+    max-height: 100vh;
     overflow: hidden;
 }
 
@@ -1551,34 +1542,28 @@ html, body {
     pointer-events: auto;
 }
 
-/* Make images fill slides with no empty space; center crop */
+/* Ensure images always fill the carousel height and slightly zoom so there are
+   never empty bands above/below — crop sides as needed. */
 .carousel-slide img {
     display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;        /* crop to fill without letterboxing */
-    object-position: center;  /* center the important part of the image */
+    height: 100%;             /* match slide height */
+    object-fit: cover;        /* fill container, cropping where needed */
+    object-position: center;  /* focus center by default */
     -webkit-user-drag: none;
     user-select: none;
+    transition: transform 0.7s ease; /* smooth zoom on active slide */
+    will-change: transform;
 }
 
-/* Keep carousel controls positioned without affecting layout */
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
+/* Apply a modest zoom on the active slide to bias filling the vertical axis */
+.carousel-slide.active img {
+    transform: scale(1.03); /* adjust (1.03 - 1.2) to taste */
 }
 
-/* specific positions for prev/next */
-.carousel-btn.prev { left: 8px; }
-.carousel-btn.next { right: 8px; }
-
-/* Mobile tweak — slightly shorter hero on small phones */
+/* Slightly reduce zoom on very small phones to avoid over-cropping faces */
 @media (max-width: 480px) {
-    .hero .carousel {
-        height: 48vh;
-        min-height: 240px;
+    .carousel-slide.active img {
+        transform: scale(1.04);
     }
-    .carousel-btn { left: 6px; right: 6px; }
 }
