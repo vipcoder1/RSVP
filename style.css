@@ -957,14 +957,14 @@ h1, h2, h3, h4, h5, h6 {
 } */
 
 @font-face {
-  font-family: 'Bacalisties';
-  src: url('fonts/Bacalisties.ttf') format('truetype');
+  font-family: 'BrittanySignature';
+  src: url('fonts/BrittanySignature.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 .hero-names {
-    font-family: 'Bacalisties', serif;
+    font-family: 'BrittanySignature', serif;
     font-size: 100px;
     font-weight: 600;
     margin-bottom: 16px;
