@@ -125,22 +125,6 @@
         </div>
     </section>
     
-    <!-- RSVP Section -->
-    <section class="rsvp-section" id="rsvp">
-        <div class="container">
-            <div class="section-content fade-in">
-                <h2 class="section-title">Join Our Celebration</h2>
-                <p class="rsvp-subtitle">Please let us know if you'll be able to join us</p>
-                <button class="rsvp-btn" id="rsvpBtn" data-tally-open="kdeZkR" data-tally-layout="modal" data-tally-width="500" data-tally-emoji-text="❤️" data-tally-emoji-animation="tada">
-                    <span>RSVP Now</span>
-                    <!-- <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg> -->
-                </button>
-            </div>
-        </div>
-    </section>
-    
     <!-- Additional Info Section -->
     <section class="additional-info" id="info">
         <div class="container">
@@ -179,6 +163,46 @@
                     </div>
                     <h3>Dress Code</h3>
                     <p>We invite you to dress in formal or traditional attire. Feel free to embrace vibrant colors and elegant styles that reflect the joyous celebration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+     <!-- RSVP Section -->
+    <section class="rsvp-section" id="rsvp">
+        <div class="container">
+            <div class="section-content fade-in">
+                <h2 class="section-title">Join Our Celebration</h2>
+                <p class="rsvp-subtitle">Please let us know if you'll be able to join us</p>
+                <button class="rsvp-btn" id="rsvpBtn">
+                    <span>RSVP Now</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- INLINE RSVP SECTION (inserted below rsvp-section) -->
+    <section class="rsvp-inline" id="rsvpInline" aria-hidden="true" hidden>
+        <div class="container">
+            <div class="section-content fade-in">
+                <h2 class="section-title">Wedding RSVP</h2>
+                <!-- <p class="rsvp-subtitle">Please fill out the form below to confirm your attendance</p> -->
+
+                <!-- Inline embed: use iframe pointing to your Tally form (kdeZkR) -->
+                <div class="rsvp-inline-body">
+                    <iframe data-tally-src="https://tally.so/embed/kdeZkR?hideTitle=1&transparentBackground=1&dynamicHeight=1&formEventsForwarding=1" loading="lazy" width="100%" height="450" frameborder="0" marginheight="0" marginwidth="0" title="RSVP - Kshiti & Vishv's Wedding"></iframe>
+
+                    <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+                    <!-- <iframe
+                        src="https://tally.so/embed/kdeZkR"
+                        title="RSVP form"
+                        frameborder="0"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe> -->
+
+                    <div style="display:flex;justify-content:center;margin-top:16px;">
+                        <button class="btn btn--secondary rsvp-inline-close" aria-label="Close RSVP">Close</button>
+                    </div>
                 </div>
             </div>
         </div>

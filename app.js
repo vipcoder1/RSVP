@@ -86,38 +86,54 @@ if (scrollIndicator) {
 }
 
 // Modal functionality
-const rsvpBtn = document.getElementById('rsvpBtn');
-const modal = document.getElementById('rsvpModal');
-const modalClose = document.getElementById('modalClose');
-const modalOverlay = document.getElementById('modalOverlay');
+document.addEventListener('DOMContentLoaded', function () {
+  const rsvpBtn = document.getElementById('rsvpBtn');
+  const rsvpInline = document.getElementById('rsvpInline');
+  const closeBtn = rsvpInline && rsvpInline.querySelector('.rsvp-inline-close');
 
-function openModal() {
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
+  if (!rsvpBtn || !rsvpInline) return;
 
-function closeModal() {
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-}
+  function openInline() {
+    rsvpInline.hidden = false;
+    rsvpInline.setAttribute('aria-hidden', 'false');
+    rsvpBtn.setAttribute('aria-expanded', 'true');
 
-if (rsvpBtn) {
-    rsvpBtn.addEventListener('click', openModal);
-}
+    // Give the browser a tick so layout updates before scrolling
+    requestAnimationFrame(() => {
+      rsvpInline.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // focus the iframe for keyboard users (if allowed)
+      const iframe = rsvpInline.querySelector('iframe');
+      if (iframe) iframe.focus({ preventScroll: true });
+    });
+  }
 
-if (modalClose) {
-    modalClose.addEventListener('click', closeModal);
-}
+  function closeInline() {
+    rsvpInline.hidden = true;
+    rsvpInline.setAttribute('aria-hidden', 'true');
+    rsvpBtn.setAttribute('aria-expanded', 'false');
+    rsvpBtn.focus({ preventScroll: true });
+  }
 
-if (modalOverlay) {
-    modalOverlay.addEventListener('click', closeModal);
-}
+  rsvpBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    // toggle
+    if (rsvpInline.hidden || rsvpInline.getAttribute('aria-hidden') === 'true') openInline();
+    else closeInline();
+  });
 
-// Close modal with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeModal();
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      closeInline();
+    });
+  }
+
+  // Close on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && rsvpInline && !rsvpInline.hidden) {
+      closeInline();
     }
+  });
 });
 
 // Fade-in animation on scroll

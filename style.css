@@ -1159,6 +1159,38 @@ section {
     transform: translateY(0);
 }
 
+/* Inline RSVP section styles */
+.rsvp-inline {
+  background: white;
+  border-top: 1px solid var(--color-border);
+  padding: 48px 0;
+}
+
+.rsvp-inline[hidden] {
+  display: none;
+}
+
+.rsvp-inline .rsvp-inline-body {
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.rsvp-inline .rsvp-inline-body iframe {
+  width: 100%;
+  height: 640px; /* adjust for mobile with media queries below */
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+/* Mobile tweak: shorter iframe height on phones */
+@media (max-width: 480px) {
+  .rsvp-inline .rsvp-inline-body iframe {
+    height: 520px;
+  }
+}
+
 /* Additional Info Section */
 .additional-info {
     background: white;
