@@ -86,7 +86,9 @@ if (scrollIndicator) {
 }
 
 // Modal functionality
-document.addEventListener('DOMContentLoaded', function () {
+// Replace the previous DOMContentLoaded wrapper with an init that runs
+// immediately if the document is ready, or on DOMContentLoaded if not.
+function initRSVPInline() {
   const rsvpBtn = document.getElementById('rsvpBtn');
   const rsvpInline = document.getElementById('rsvpInline');
   const closeBtn = rsvpInline && rsvpInline.querySelector('.rsvp-inline-close');
@@ -98,10 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
     rsvpInline.setAttribute('aria-hidden', 'false');
     rsvpBtn.setAttribute('aria-expanded', 'true');
 
-    // Give the browser a tick so layout updates before scrolling
     requestAnimationFrame(() => {
       rsvpInline.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // focus the iframe for keyboard users (if allowed)
       const iframe = rsvpInline.querySelector('iframe');
       if (iframe) iframe.focus({ preventScroll: true });
     });
@@ -116,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   rsvpBtn.addEventListener('click', function (e) {
     e.preventDefault();
-    // toggle
     if (rsvpInline.hidden || rsvpInline.getAttribute('aria-hidden') === 'true') openInline();
     else closeInline();
   });
@@ -134,7 +133,13 @@ document.addEventListener('DOMContentLoaded', function () {
       closeInline();
     }
   });
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initRSVPInline);
+} else {
+  initRSVPInline();
+}
 
 // Fade-in animation on scroll
 const observerOptions = {
